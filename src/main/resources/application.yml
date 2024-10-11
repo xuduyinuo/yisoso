@@ -1,0 +1,58 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yisoso?serverTimezone=UTC
+    username: root # 替换为自己的本地数据库用户名
+    password: 123456 # 替换为自己的本地数据库密码
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    servlet:
+      load-on-startup: -1
+
+  # redis 配置
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+
+server:
+  port: 8081 # 端口
+  servlet:
+    context-path: /api # 路由前缀
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xudu.springbootinit.entity
+
+
+# mybatis-plus 配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+qiniu:
+  accessKey: 4R1mM_82FX-AeKha20GmmkAXK0uPaar1F97C0xAk
+  secretKey: Q23dOBrxFAsQv_m0K9i7dfVdTCAq3UTFA4Dil8Jy
+  bucketName: tour-file
+  path: http://sfddr1eq5.hb-bkt.clouddn.com/
+
+#mybatis-plus:
+#  configuration:
+#    #配置日志文件
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    #设置当查询结果值为null时，同样映射该查询字段给map。
+#    call-setters-on-nulls: true
+#    # 下划线转驼峰
+#    map-underscore-to-camel-case: true#
